@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SHA-256 Hash Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Animation -->
+    <div class="background"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            🔐 SHA-256
+        </div>
+
+        <div class="header-text">
+            Cryptographic Hash Generator
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero">
+
+            <div class="hero-icon">🛡️</div>
+
+            <h1>SHA-256 Hash Generator</h1>
+
+            <p>
+                Generate a secure 256-bit cryptographic hash for any text.
+                Enter your message and see how SHA-256 transforms it into
+                a unique hexadecimal fingerprint.
+            </p>
+
+        </section>
+
+
+        <!-- Main Hash Card -->
+        <section class="hash-card">
+
+            <div class="card-title">
+                <span>📝</span>
+                <h2>Enter Your Message</h2>
+            </div>
+
+            <textarea
+                id="inputText"
+                placeholder="Enter text here..."
+            >India is already a developed country</textarea>
+
+
+            <div class="button-group">
+
+                <button class="generate-btn" onclick="generateHash()">
+                    ⚡ Generate SHA-256 Hash
+                </button>
+
+                <button class="clear-btn" onclick="clearData()">
+                    🗑 Clear
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Result -->
+        <section class="result-card">
+
+            <div class="result-header">
+
+                <div>
+                    <h2>🔐 Generated Hash</h2>
+                    <p>Your SHA-256 encrypted fingerprint</p>
+                </div>
+
+                <button class="copy-btn" onclick="copyHash()">
+                    📋 Copy Hash
+                </button>
+
+            </div>
+
+
+            <div id="hashOutput" class="hash-output">
+                Click "Generate SHA-256 Hash" to generate the result...
+            </div>
+
+
+            <!-- Hash Information -->
+            <div class="hash-info">
+
+                <div class="info-box">
+                    <span class="info-title">Algorithm</span>
+                    <span id="algorithm">SHA-256</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-title">Hash Length</span>
+                    <span id="hashLength">256 bits</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-title">Hex Characters</span>
+                    <span id="hexLength">64</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Statistics -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <div class="stat-icon">🔤</div>
+                <div>
+                    <p>Input Characters</p>
+                    <h2 id="characterCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div>
+                    <p>Input Bytes</p>
+                    <h2 id="byteCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔢</div>
+                <div>
+                    <p>Binary Hash</p>
+                    <h2>256 Bits</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Avalanche Effect -->
+        <section class="avalanche-card">
+
+            <div class="section-heading">
+                <span>🌊</span>
+                <div>
+                    <h2>Avalanche Effect Demonstration</h2>
+                    <p>
+                        A small change in the input produces a completely
+                        different SHA-256 hash.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="avalanche-input">
+
+                <input
+                    type="text"
+                    id="avalancheText"
+                    placeholder="Try changing one character..."
+                >
+
+                <button onclick="compareHashes()">
+                    Compare Hashes
+                </button>
+
+            </div>
+
+
+            <div class="comparison">
+
+                <div class="compare-box">
+
+                    <h3>Original Message</h3>
+
+                    <p id="originalMessage">
+                        India is already a developed country
+                    </p>
+
+                    <div id="originalHash" class="small-hash">
+                        Generate the main hash first...
+                    </div>
+
+                </div>
+
+
+                <div class="compare-box">
+
+                    <h3>Modified Message</h3>
+
+                    <p id="modifiedMessage">
+                        No modified message yet
+                    </p>
+
+                    <div id="modifiedHash" class="small-hash">
+                        Waiting for comparison...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SHA Process -->
+        <section class="process-card">
+
+            <h2>⚙️ SHA-256 Hash Generation Process</h2>
+
+            <div class="steps">
+
+                <div class="step">
+                    <div class="step-number">1</div>
+
+                    <div class="step-content">
+                        <h3>Input Message</h3>
+                        <p>
+                            The original text is provided as input to the
+                            SHA-256 algorithm.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">2</div>
+
+                    <div class="step-content">
+                        <h3>Convert to Binary</h3>
+                        <p>
+                            Each character is converted into its binary
+                            representation using UTF-8 encoding.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">3</div>
+
+                    <div class="step-content">
+                        <h3>Padding</h3>
+                        <p>
+                            Extra bits are added to make the message length
+                            suitable for SHA-256 block processing.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">4</div>
+
+                    <div class="step-content">
+                        <h3>512-Bit Blocks</h3>
+                        <p>
+                            The padded message is divided into blocks of
+                            512 bits.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">5</div>
+
+                    <div class="step-content">
+                        <h3>64 Processing Rounds</h3>
+                        <p>
+                            Mathematical operations are repeatedly performed
+                            using XOR, AND, rotations and additions.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">6</div>
+
+                    <div class="step-content">
+                        <h3>256-Bit Hash Output</h3>
+                        <p>
+                            The final output is a fixed-size 256-bit hash,
+                            represented using 64 hexadecimal characters.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Security Properties -->
+        <section class="security-card">
+
+            <h2>🛡️ Important Properties of SHA-256</h2>
+
+            <div class="property-grid">
+
+                <div class="property">
+                    <span>🔒</span>
+                    <h3>One-Way Function</h3>
+                    <p>
+                        It is computationally difficult to recover the
+                        original message from the hash.
+                    </p>
+                </div>
+
+
+                <div class="property">
+                    <span>🎯</span>
+                    <h3>Fixed Length</h3>
+                    <p>
+                        Every input produces a 256-bit output regardless
+                        of input size.
+                    </p>
+                </div>
+
+
+                <div class="property">
+                    <span>🌊</span>
+                    <h3>Avalanche Effect</h3>
+                    <p>
+                        A tiny change in input causes a major change
+                        in the resulting hash.
+                    </p>
+                </div>
+
+
+                <div class="property">
+                    <span>🧬</span>
+                    <h3>Unique Fingerprint</h3>
+                    <p>
+                        SHA-256 creates a cryptographic fingerprint for
+                        data integrity and security.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            🔐 SHA-256 Hash Generator Simulator
+        </p>
+
+        <p>
+            Developed using HTML, CSS & JavaScript
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
